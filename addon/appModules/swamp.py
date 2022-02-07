@@ -96,6 +96,7 @@ class swampChatWindow(IAccessible):
 		global autoFill
 		if autoFill:
 			autoFill = False
+			self.currentCommand = False
 			ui.message("Auto fill off")
 		else:
 			autoFill = True
