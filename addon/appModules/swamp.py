@@ -12,7 +12,7 @@ import speech
 import eventHandler
 
 changeMouseTracking = False
-autocomplete = True
+autoFill = True
 
 class AppModule(appModuleHandler.AppModule):
 
@@ -35,14 +35,14 @@ class AppModule(appModuleHandler.AppModule):
 			changeMouseTracking = False
 
 	@script(gesture="KB:nvda+a")
-	def script_autocompleteToggle(self, gesture):
-		global autocomplete
-		if autocomplete:
-			autocomplete = False
-			ui.message("Autocomplete off")
+	def script_autoFillToggle(self, gesture):
+		global autoFill
+		if autoFill:
+			autoFill = False
+			ui.message("Auto fill off")
 		else:
-			autocomplete = True
-			ui.message("Autocomplete on")
+			autoFill = True
+			ui.message("Auto fill on")
 
 class swampGameWindow(IAccessible):
 
@@ -57,7 +57,7 @@ class swampChatWindow(IAccessible):
 		super(swampChatWindow,self).event_typedCharacter(ch)
 
 	def event_valueChange(self):
-		if not autocomplete: return
+		if not autoFill: return
 		commands = ['/w ','/where ','/me ', '/lootpoints ', '/questcredits ', '/level ', '/deaths ', '/kills ', '/stats ', '/crates ', '/friend ', '/unfriend ', '/friends ', '/beacon ', '/language', '/scripts', '/track ']
 		text = self.value
 		template = '{command}. Press space key for insert.'
@@ -81,7 +81,7 @@ class swampChatWindow(IAccessible):
 
 	@script(gesture="KB:space")
 	def script_insertCommand(self,gesture):
-		if self.currentCommand == False:
+		if self.currentCommand == False or not autoFill:
 			gesture.send()
 			return
 		text = self.currentCommand[len(self.value):]
@@ -96,7 +96,7 @@ class swampChatWindow(IAccessible):
 
 	@script(gesture="KB:nvda+V")
 	def script_speakCurrentCommand(self, gesture):
-		if self.currentCommand == False:
+		if self.currentCommand == False or not autoFill:
 			ui.message("No command")
 		else:
 			ui.message(self.currentCommand)
