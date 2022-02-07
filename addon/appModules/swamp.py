@@ -34,16 +34,6 @@ class AppModule(appModuleHandler.AppModule):
 			config.conf["mouse"]["enableMouseTracking"] = True
 			changeMouseTracking = False
 
-	@script(gesture="KB:nvda+a")
-	def script_autoFillToggle(self, gesture):
-		global autoFill
-		if autoFill:
-			autoFill = False
-			ui.message("Auto fill off")
-		else:
-			autoFill = True
-			ui.message("Auto fill on")
-
 class swampGameWindow(IAccessible):
 
 	def event_typedCharacter(self, ch):
@@ -100,3 +90,14 @@ class swampChatWindow(IAccessible):
 			ui.message("No command")
 		else:
 			ui.message(self.currentCommand)
+
+	@script(gesture="KB:nvda+a")
+	def script_autoFillToggle(self, gesture):
+		global autoFill
+		if autoFill:
+			autoFill = False
+			ui.message("Auto fill off")
+		else:
+			autoFill = True
+			ui.message("Auto fill on")
+
