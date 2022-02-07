@@ -17,9 +17,9 @@ autocomplete = True
 class AppModule(appModuleHandler.AppModule):
 
 	def chooseNVDAObjectOverlayClasses(self, obj, clsList):
-		if obj.windowClassName == "ThunderRT6FormDC" and obj.role == controlTypes.ROLE_PANE:
+		if obj.windowClassName == "ThunderRT6FormDC" and obj.role == controlTypes.Role.PANE:
 			clsList.insert(0, swampGameWindow)
-		if obj.windowClassName == "Edit" and obj.role == controlTypes.ROLE_EDITABLETEXT and obj.windowControlID == 4900:
+		if obj.windowClassName == "Edit" and obj.role == controlTypes.Role.EDITABLETEXT and obj.windowControlID == 4900:
 			clsList.insert(0, swampChatWindow)
 
 	def event_focusEntered(self, obj, nextHandler):
