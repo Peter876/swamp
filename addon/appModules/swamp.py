@@ -48,7 +48,7 @@ class swampChatWindow(IAccessible):
 
 	def event_valueChange(self):
 		if not autoFill: return
-		commands = ['/w ','/where ','/me ', '/lootpoints ', '/questcredits ', '/level ', '/deaths ', '/kills ', '/stats ', '/crates ', '/friend ', '/unfriend ', '/friends ', '/beacon ', '/language', '/scripts', '/track ']
+		commands = ['/w ','/where ','/me ', '/lootpoints ', '/questcredits ', '/level ', '/deaths ', '/kick ', '/kills ', '/stats ', '/crates ', '/friend ', '/unfriend ', '/friends ', '/beacon ', '/language', '/scripts', '/track ', '/afk ', '/lockerupdate ']
 		text = self.value
 		template = '{command}. Press space key for insert.'
 
