@@ -7,9 +7,7 @@ import ui
 from scriptHandler import script
 import keyboardHandler
 import winUser
-import api
 import speech
-import eventHandler
 
 changeMouseTracking = False
 autoFill = True
@@ -41,30 +39,31 @@ class swampGameWindow(IAccessible):
 
 class swampChatWindow(IAccessible):
 	currentCommand = False
+	skipChars = 0
 
 	def event_typedCharacter(self, ch):
-		if eventHandler.isPendingEvents("typedCharacter"): return
+		if self.skipChars > 0:
+			self.skipChars -= 1
+			return
 		super(swampChatWindow,self).event_typedCharacter(ch)
 
 	def event_valueChange(self):
 		if not autoFill: return
-		commands = ['/w ','/where ','/me ', '/lootpoints ', '/questcredits ', '/level ', '/deaths ', '/kick ', '/kills ', '/stats ', '/crates ', '/friend ', '/unfriend ', '/friends ', '/beacon ', '/language', '/scripts', '/track ', '/afk ', '/lockerupdate ']
+		commands = ['/w ','/where ','/me ', '/lootpoints', '/questcredits', '/level ', '/deaths ', '/kick ', '/kills ', '/stats ', '/crates ', '/friend ', '/unfriend ', '/friends ', '/beacon ', '/language', '/scripts', '/track ', '/afk', '/lockerupdate']
 		text = self.value
 		template = '{command}. Press space key for insert.'
 
-		if text[0:1] != '/' or len(text) == 1 or self.value[-1:].isspace(): return
+		if not text.startswith('/') or len(text) == 1 or self.value[-1:].isspace(): return
 
 		buffer = False
+
 		for command in commands:
-			if command[:-1] == self.value:
-				buffer = command
-				break
 			if command == self.value: continue
 
 			if command.find(text) >= 0:
 				buffer = command
 				if command == self.currentCommand: break
-				message = template.format(command=command[:-1])
+				message = template.format(command=command.rstrip())
 				ui.message(message)
 				break
 		self.currentCommand = buffer
@@ -78,11 +77,14 @@ class swampChatWindow(IAccessible):
 		message = "{command} inserted".format(command=self.currentCommand)
 		ui.message(message)
 		speech.clearTypedWordBuffer()
+		chars = 0
 		for symbol in text:
 			self.isAuto = True
 			mod, key = winUser.VkKeyScanEx(symbol, keyboardHandler.getInputHkl())
 			keyboardHandler.KeyboardInputGesture([], key, 0, False).send()
+			chars += 1
 		self.currentCommand = False
+		self.skipChars = chars
 
 	@script(gesture="KB:nvda+V")
 	def script_speakCurrentCommand(self, gesture):
