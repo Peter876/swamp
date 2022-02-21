@@ -1,5 +1,6 @@
 
 import appModuleHandler
+import addonHandler
 import controlTypes
 from NVDAObjects.IAccessible import IAccessible
 import config
@@ -8,6 +9,8 @@ from scriptHandler import script
 import keyboardHandler
 import winUser
 import speech
+
+addonHandler.initTranslation()
 
 changeMouseTracking = False
 autoFill = True
@@ -51,7 +54,7 @@ class swampChatWindow(IAccessible):
 		if not autoFill: return
 		commands = ['/w ','/where ','/me ', '/lootpoints', '/questcredits', '/level ', '/deaths ', '/kick ', '/kills ', '/stats ', '/crates ', '/friend ', '/unfriend ', '/friends ', '/beacon ', '/language', '/scripts', '/track ', '/afk', '/lockerupdate', '/title', '/survivors', '/r ', '/roll', '/fw ', '/alert', '/channel', '/voices', '/vol-refresh', '/mute', '/unmute', '/setshow', '/testshow', '/confirmshow', '/show', '/reset', '/time', '/report', '/lootrank']
 		text = self.value
-		template = '{command}. Press space key for insert.'
+		template = _("{command}. Press space key for insert.")
 
 		if not text.startswith('/') or len(text) == 1 or self.value[-1:].isspace(): return
 
@@ -74,7 +77,7 @@ class swampChatWindow(IAccessible):
 			gesture.send()
 			return
 		text = self.currentCommand[len(self.value):]
-		message = "{command} inserted".format(command=self.currentCommand)
+		message = _("{command} inserted").format(command=self.currentCommand)
 		ui.message(message)
 		speech.clearTypedWordBuffer()
 		chars = 0
@@ -89,7 +92,7 @@ class swampChatWindow(IAccessible):
 	@script(gesture="KB:nvda+V")
 	def script_speakCurrentCommand(self, gesture):
 		if self.currentCommand == False or not autoFill:
-			ui.message("No command")
+			ui.message(_("No command"))
 		else:
 			ui.message(self.currentCommand)
 
@@ -99,8 +102,8 @@ class swampChatWindow(IAccessible):
 		if autoFill:
 			autoFill = False
 			self.currentCommand = False
-			ui.message("Auto fill off")
+			ui.message(_("Auto fill off"))
 		else:
 			autoFill = True
-			ui.message("Auto fill on")
+			ui.message(_("Auto fill on"))
 
