@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Swamp addon 2.0\n"
+"POT-Creation-Date: 2022-02-21 16:25+0300\n"
+"PO-Revision-Date: 2022-02-21 16:36+0300\n"
+"Last-Translator: \n"
+"Language-Team: Eugene Poplavsky <jawhien@gmail.com>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: appModules/swamp.py\n"
+"X-Poedit-SearchPath-1: installTasks.py\n"
+
+#: appModules/swamp.py:57
+#, python-brace-format
+msgid "{command}. Press space key for insert."
+msgstr "{command}. Чтобы вставить нажмите пробел."
+
+#: appModules/swamp.py:80
+#, python-brace-format
+msgid "{command} inserted"
+msgstr "{command} вставлено"
+
+#: appModules/swamp.py:95
+msgid "No command"
+msgstr "Нет команды"
+
+#: appModules/swamp.py:105
+msgid "Auto fill off"
+msgstr "Автозаполнение отключено"
+
+#: appModules/swamp.py:108
+msgid "Auto fill on"
+msgstr "Автозаполнение включено"
+
+#: installTasks.py:29
+#, python-brace-format
+msgid ""
+"This version of NVDA is incompatible. To install the add-on, NVDA version "
+"{year}.{major} or higher is required. Please update NVDA or download an "
+"older version of the add-on here: \n"
+"{link}"
+msgstr ""
+"Эта версия NVDA не поддерживается. Для установки этого дополнения "
+"требуется NVDA версии {year}.{major} или выше. Пожалуйста, обновите NVDA "
+"или загрузите более старую версию дополнения здесь: \n"
+"{link}"
+
+#: installTasks.py:29
+msgid "Error"
+msgstr "Ошибка"
+
+#: installTasks.py:33
+#, python-brace-format
+msgid ""
+" {name} - this free add-on for NVDA.\n"
+"You can make a donation to the author to help further development of this "
+"add-on and other free software.\n"
+"You want to make a donation now? For transaction you will be redirected to "
+"the website of the developer."
+msgstr ""
+" {name} - это бесплатное дополнение для NVDA.\n"
+"Вы можете сделать пожертвование автору дополнения, чтобы помочь в развитии "
+"этого дополнения и другого бесплатного программного обеспечения.\n"
+"Хотите сделать пожертвование прямо сейчас? Для проведения платежа вы "
+"будете перенаправлены на сайт разработчика."
+
+#: installTasks.py:37
+#, python-brace-format
+msgid "Request donations for {name}"
+msgstr "Запрос пожертвования для {name}"
