@@ -1,3 +1,6 @@
+# swamp.py
+#A part of swamp add-on
+#Copyright (C) 2020 Eugene Poplavsky <jawhien@gmail.com>
 
 import appModuleHandler
 import addonHandler
